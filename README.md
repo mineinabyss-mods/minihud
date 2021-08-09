@@ -1,7 +1,8 @@
-Mini HUD
+Mini HUD + MIA
 ==============
 Mini HUD is a tiny client-side mod for Minecraft. that adds the coordinates, looking angle and current speed to the screen.
-For more information and the downloads (compiled builds), see http://minecraft.curseforge.com/projects/minihud
+This is a fork to add additional information and utilities to help with the Made in Abyss Minecraft server.
+For more information on the original, see http://minecraft.curseforge.com/projects/minihud
 
 Compiling
 =========
