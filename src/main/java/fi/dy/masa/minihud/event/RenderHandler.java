@@ -408,6 +408,10 @@ public class RenderHandler implements IRenderer
         else if (type == InfoToggle.COORDINATES ||
                  type == InfoToggle.DIMENSION)
         {
+            // mia coord conversion
+            double spacing = 16384.0;
+            double relx = (entity.getX() + spacing/2) % spacing - spacing/2;
+
             // Don't add the same line multiple times
             if (this.addedTypes.contains(InfoToggle.COORDINATES) || this.addedTypes.contains(InfoToggle.DIMENSION))
             {
@@ -424,7 +428,7 @@ public class RenderHandler implements IRenderer
                     try
                     {
                         str.append(String.format(Configs.Generic.COORDINATE_FORMAT_STRING.getStringValue(),
-                            entity.getX(), y, entity.getZ()));
+                            relx, y, entity.getZ()));
                     }
                     // Uh oh, someone done goofed their format string... :P
                     catch (Exception e)
@@ -435,7 +439,7 @@ public class RenderHandler implements IRenderer
                 else
                 {
                     str.append(String.format("XYZ: %.2f / %.4f / %.2f",
-                        entity.getX(), y, entity.getZ()));
+                        relx, y, entity.getZ()));
                 }
 
                 pre = " / ";
@@ -838,6 +842,50 @@ public class RenderHandler implements IRenderer
         else if (type == InfoToggle.BLOCK_PROPS)
         {
             this.getBlockProperties(mc);
+        }
+        else if (type == InfoToggle.LAYER) {
+            double spacing = 16384;
+
+            String[] layers = {
+                "Orth",
+                "Edge",
+                "Forest",
+                "Fault",
+                "Goblets",
+                "Sea"
+              };
+
+            int[][] gslices = {
+                {0, 1},
+                {1, 1},
+                {1, 2},
+                {1, 3},
+                {2, 1},
+                {2, 2},
+                {3, 1},
+                {3, 2},
+                {4, 1},
+                {4, 2},
+                {4, 3},
+                {4, 4},
+                {5, 1},
+                {5, 2},
+                {5, 3},
+            };
+
+            int gslice = (int) Math.floor((entity.getX() + spacing/2) / spacing);
+
+            if (gslice + 1 > gslices.length || gslice < 0) {
+                return;
+            }
+
+            int[] sliceData = gslices[gslice];
+            int layer = sliceData[0];
+            int slice = sliceData[1];
+            String layername = layers[layer];
+
+            String f = String.format("At L%dS%d %s", layer, slice, layername);
+            this.addLine(f);
         }
     }
 

@@ -1,12 +1,13 @@
 {
     "schemaVersion": 1,
     "id": "minihud",
-    "name": "MiniHUD",
+    "name": "MiniHUD + Mine in Abyss",
     "version": "${mod_version}",
 
-    "description": "Configurable \"mini-F3\" info lines, and various overlay renderers",
+    "description": "Configurable \"mini-F3\" info lines, and various overlay renderers with added Mine in Abyss coordinate/layer support",
     "authors": [
-        "masa"
+        "masa",
+        "oatmealine"
     ],
     "contact": {
         "homepage": "https://www.curseforge.com/minecraft/mc-mods/minihud",
