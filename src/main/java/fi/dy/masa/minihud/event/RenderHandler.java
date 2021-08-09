@@ -848,11 +848,11 @@ public class RenderHandler implements IRenderer
 
             String[] layers = {
                 "Orth",
-                "Edge",
-                "Forest",
-                "Fault",
-                "Goblets",
-                "Sea"
+                "Edge of the Abyss",
+                "Forest of Temptation",
+                "Great Fault",
+                "The Goblet of Giants",
+                "Sea of Corpses"
               };
 
             int[][] gslices = {
@@ -884,7 +884,7 @@ public class RenderHandler implements IRenderer
             int slice = sliceData[1];
             String layername = layers[layer];
 
-            String f = String.format("At L%dS%d %s", layer, slice, layername);
+            String f = String.format("%s | L%dS%d", layer, slice, layername);
             this.addLine(f);
         }
     }
