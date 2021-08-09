@@ -405,12 +405,22 @@ public class RenderHandler implements IRenderer
                 this.addLine("Ping: " + info.getLatency() + " ms");
             }
         }
+        else if (type == InfoToggle.MIA_COORDINATES) {
+            // mia coord conversion
+            double spacing = 16384.0;
+            int gslice = (int) Math.floor((entity.getX() + spacing/2) / spacing);
+
+            double relx = (entity.getX() + spacing/2) % spacing - spacing/2;
+            double rely = y - gslice * 480;
+
+            String f = String.format("XYZ: %.2f / %.4f / %.2f",
+                relx, rely, entity.getZ());
+
+            this.addLine(f);
+        }
         else if (type == InfoToggle.COORDINATES ||
                  type == InfoToggle.DIMENSION)
         {
-            // mia coord conversion
-            double spacing = 16384.0;
-            double relx = (entity.getX() + spacing/2) % spacing - spacing/2;
 
             // Don't add the same line multiple times
             if (this.addedTypes.contains(InfoToggle.COORDINATES) || this.addedTypes.contains(InfoToggle.DIMENSION))
@@ -428,7 +438,7 @@ public class RenderHandler implements IRenderer
                     try
                     {
                         str.append(String.format(Configs.Generic.COORDINATE_FORMAT_STRING.getStringValue(),
-                            relx, y, entity.getZ()));
+                            entity.getX(), y, entity.getZ()));
                     }
                     // Uh oh, someone done goofed their format string... :P
                     catch (Exception e)
@@ -439,7 +449,7 @@ public class RenderHandler implements IRenderer
                 else
                 {
                     str.append(String.format("XYZ: %.2f / %.4f / %.2f",
-                        relx, y, entity.getZ()));
+                        entity.getX(), y, entity.getZ()));
                 }
 
                 pre = " / ";
@@ -843,7 +853,7 @@ public class RenderHandler implements IRenderer
         {
             this.getBlockProperties(mc);
         }
-        else if (type == InfoToggle.LAYER) {
+        else if (type == InfoToggle.MIA_LAYER) {
             double spacing = 16384;
 
             String[] layers = {

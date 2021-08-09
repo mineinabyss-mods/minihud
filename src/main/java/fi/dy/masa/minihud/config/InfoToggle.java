@@ -13,6 +13,9 @@ import fi.dy.masa.minihud.MiniHUD;
 
 public enum InfoToggle implements IConfigInteger, IHotkeyTogglable
 {
+    MIA_LAYER               ("infoMIALayer",                true,   5, "", "Show the player's current estimated MIA layer/slice"),
+    MIA_COORDINATES         ("infoMIACoordinates",          true,   4, "", "Show the player's current position aligned to the start of the descent"),
+
     BEE_COUNT               ("infoBeeCount",                false, 36, "", "Show the number of bees in the targeted Hive or Nest.\nNote: This only works in single player without server-side support."),
     BIOME                   ("infoBiome",                   false, 19, "", "Show the name of the current biome"),
     BIOME_REG_NAME          ("infoBiomeRegistryName",       false, 20, "", "Show the registry name of the current biome"),
@@ -24,8 +27,7 @@ public enum InfoToggle implements IConfigInteger, IHotkeyTogglable
     CHUNK_SECTIONS          ("infoChunkSections",           false, 14, "", "Show the currently rendered number of\nChunk sections (the C value from F3)"),
     CHUNK_SECTIONS_FULL     ("infoChunkSectionsLine",       false, 15, "", "Show the entire line of the C value from the F3 screen"),
     CHUNK_UPDATES           ("infoChunkUpdates",            false, 16, "", "Show the current number of chunk updates per second"),
-    COORDINATES             ("infoMIACoordinates",          true,   4, "", "Show the player's MIA-aligned coordinates"),
-    LAYER                   ("infoMIALayer",                true,   5, "", "Show the player's current estimated MIA layer/slice"),
+    COORDINATES             ("infoCoordinates",             false,  4, "", "Show the player's aligned coordinates"),
     DIFFICULTY              ("infoDifficulty",              false, 18, "", "Show the local difficulty"),
     DIMENSION               ("infoDimensionId",             false,  5, "", "Show the current dimension ID\n(might not be accurate in every case,\ndepending on the server (Sponge?)!)"),
     DISTANCE                ("infoDistance",                false, 33, "", "Show the distance to the current reference point.\nSet the reference point with the setDistanceReferencePoint hotkey"),
