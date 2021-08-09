@@ -894,7 +894,7 @@ public class RenderHandler implements IRenderer
             int slice = sliceData[1];
             String layername = layers[layer];
 
-            String f = String.format("%s | L%dS%d", layer, slice, layername);
+            String f = String.format("%s | L%dS%d", layername, layer, slice);
             this.addLine(f);
         }
     }
