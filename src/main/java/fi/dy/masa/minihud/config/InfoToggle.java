@@ -15,6 +15,7 @@ public enum InfoToggle implements IConfigInteger, IHotkeyTogglable
 {
     MIA_LAYER               ("infoMIALayer",                true,   5, "", "Show the player's current estimated MIA layer/slice"),
     MIA_COORDINATES         ("infoMIACoordinates",          true,   4, "", "Show the player's current position aligned to the start of the descent"),
+    MIA_CURSE               ("infoMIACurse",                true,   9, "", "Show an approximation of the server-side curseAccrued value, responsible for ascension curse. EXPERIMENTAL AND OFTEN INACCURATE!"),
 
     BEE_COUNT               ("infoBeeCount",                false, 36, "", "Show the number of bees in the targeted Hive or Nest.\nNote: This only works in single player without server-side support."),
     BIOME                   ("infoBiome",                   false, 19, "", "Show the name of the current biome"),

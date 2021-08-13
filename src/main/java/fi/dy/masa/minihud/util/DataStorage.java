@@ -68,6 +68,8 @@ public class DataStorage
     private BlockPos lastStructureUpdatePos;
     private double serverTPS;
     private double serverMSPT;
+    private double curseAccrued = 0.0; // https://github.com/MineInAbyss/MineInAbyss/blob/master/src/main/java/com/derongan/minecraft/mineinabyss/ascension/AscensionListener.kt
+    private double lastY;
     private BlockPos worldSpawn = BlockPos.ORIGIN;
     private Vec3d distanceReferencePoint = Vec3d.ZERO;
     private int[] blockBreakCounter = new int[100];
@@ -98,6 +100,9 @@ public class DataStorage
         this.structuresNeedUpdating = true;
         this.hasStructureDataFromServer = false;
         this.structureRendererNeedsUpdate = true;
+
+        this.curseAccrued = 0.0;
+        this.lastY = 0.0;
 
         this.lastStructureUpdatePos = null;
         this.structures.clear();
@@ -130,6 +135,18 @@ public class DataStorage
         if (this.mc.isIntegratedServerRunning() == false && RendererToggle.OVERLAY_STRUCTURE_MAIN_TOGGLE.getBooleanValue())
         {
             this.shouldRegisterStructureChannel = true;
+        }
+    }
+
+    public void updateCurse(double y)
+    {
+        double diff = y - this.lastY;
+        this.curseAccrued = Math.max(this.curseAccrued + diff, 0.0);
+        this.lastY = y;
+
+        if (this.curseAccrued >= 10.0)
+        {
+            this.curseAccrued = this.curseAccrued - 10.0;
         }
     }
 
@@ -218,6 +235,11 @@ public class DataStorage
     public double getServerMSPT()
     {
         return this.serverMSPT;
+    }
+
+    public double getCurse()
+    {
+        return this.curseAccrued;
     }
 
     public boolean structureRendererNeedsUpdate()

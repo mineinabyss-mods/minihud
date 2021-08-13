@@ -213,6 +213,10 @@ public class RenderHandler implements IRenderer
             {
                 DataStorage.getInstance().updateStructureData();
             }
+
+            Entity player = mc.getCameraEntity();
+            double y = player.getBoundingBox().minY;
+            this.data.updateCurse(y);
         }
     }
 
@@ -896,6 +900,10 @@ public class RenderHandler implements IRenderer
 
             String f = String.format("%s | L%dS%d", layername, layer, slice);
             this.addLine(f);
+        }
+        else if (type == InfoToggle.MIA_CURSE) {
+            double curse = this.data.getCurse();
+            this.addLine(String.format("%.1f / 10.0 curse", curse));
         }
     }
 
